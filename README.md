@@ -19,9 +19,16 @@
 	其他
 	* 如果代码中嵌套多个html标签，需要使用一个div元素包裹它；给元素添加自定义属性需要使用data-前缀；
 	* 支持JavaScript表达式
-
-
+	* JSX中不能使用if else语句，但可以使用三元表达式；
+	* 注释；
+	* 数组写法；
+	* 样式；
 
 5、元素；
 	* 元素是构成React应用的最小单位，JSX就是用来声明React当中的元素；
 	* 与浏览器DOM不同，React中的元素事实上就是普通对象，React DOM可以确保浏览器DOM的数据内容与React元素保持一致；
+
+6、组件；
+	* 原生的HTML元素名以小写字母开头，而自定义的React类名以大写字母开头；一个组建类只能包含一个顶层标签，否则会报错；
+	* 利用props向组件传递参数；
+	* 添加属性时，class属性需要写成className,for属性需要写成htmlFor，因为class和for是JavaScript的保留字；

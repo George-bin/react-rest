@@ -13,13 +13,21 @@
 	<body>
 		<div id="app"></div>
 		<script type="text/babel">
-			function HelloMessage (props) {
-				return <h1>{props.message}</h1>;
+			function HelloMessage () {
+				return <h1>Hello World!</h1>;
 			}
 
-			const element = <HelloMessage message='我是通过组件传递的props参数！' />;
+			class Welcome extends React.Component {
+				render () {
+					return <h2>ES6组件！</h2>;		
+				}
+			}
+			const element = <HelloMessage />;
 			ReactDOM.render(
-				element,
+				<div>
+					element
+					<Welcome />
+				</div>,
 				document.getElementById('app')
 			)
 	</script>
