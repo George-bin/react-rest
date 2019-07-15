@@ -32,3 +32,6 @@
 	* 原生的HTML元素名以小写字母开头，而自定义的React类名以大写字母开头；一个组建类只能包含一个顶层标签，否则会报错；
 	* 利用props向组件传递参数；
 	* 添加属性时，class属性需要写成className,for属性需要写成htmlFor，因为class和for是JavaScript的保留字；
+
+7、状态；
+	* 
