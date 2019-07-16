@@ -9,28 +9,28 @@
 	<script type="text/javascript" src="./js/babel.min.js"></script>
 	<script type="text/javascript" src="./js/prop-types.js"></script>
 	<script type="text/javascript" src="./js/jquery.min.js"></script>
-	<title>React入门 refs</title>
+	<title>React入门 条件渲染</title>
 	<style type="text/css"></style>
 	<style></style>
 </head>
 	<body>
 		<div id="app"></div>
 		<script type="text/babel">
-			class MyComponent extends React.Component {
-				handleClick() {
-					this.refs.myInput.focus()
+			function UserGreeting(props) {
+				return <h1>欢迎回来!</h1>
+			}
+			function GuestGreeting(props) {
+				return <h1>请先注册!</h1>
+			}
+			function Greeting(props) {
+				const isLoggedIn = props.isLoggedIn;
+				if (isLoggedIn) {
+					return <UserGreeting />;
 				}
-				render() {
-					return (
-									<div>
-										<input type="text" ref="myInput" />
-										<input type="button" value="聚焦" onClick={this.handleClick.bind(this)} />
-									</div>
-					)
-				}
+				return <GuestGreeting />
 			}
 			ReactDOM.render(
-				<MyComponent />,
+				<Greeting isLoggedIn={true} />,
 				document.getElementById('app')
 			)
 		</script>

@@ -9,28 +9,30 @@
 	<script type="text/javascript" src="./js/babel.min.js"></script>
 	<script type="text/javascript" src="./js/prop-types.js"></script>
 	<script type="text/javascript" src="./js/jquery.min.js"></script>
-	<title>React入门 refs</title>
+	<title>React入门 事件处理</title>
 	<style type="text/css"></style>
-	<style></style>
 </head>
 	<body>
 		<div id="app"></div>
 		<script type="text/babel">
-			class MyComponent extends React.Component {
+			let title = '菜鸟教程';
+			class MyTitle extends React.Component {
 				handleClick() {
-					this.refs.myInput.focus()
+					console.log('点击连接');
 				}
 				render() {
 					return (
-									<div>
-										<input type="text" ref="myInput" />
-										<input type="button" value="聚焦" onClick={this.handleClick.bind(this)} />
-									</div>
+						<div>
+							<a href="#" onClick={this.handleClick}>{this.props.title}</a>
+						</div>
 					)
 				}
 			}
+			MyTitle.propTypes = {
+				title: PropTypes.string
+			}
 			ReactDOM.render(
-				<MyComponent />,
+				<MyTitle title={title} />,
 				document.getElementById('app')
 			)
 		</script>

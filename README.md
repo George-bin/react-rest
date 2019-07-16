@@ -34,4 +34,4 @@
 	* 添加属性时，class属性需要写成className,for属性需要写成htmlFor，因为class和for是JavaScript的保留字；
 
 7、状态；
-	* 
+	* React把组件看成一个状态机。通过与用户的交互，实现不同的状态，然后渲染UI，让用户界面和数据保持一致；

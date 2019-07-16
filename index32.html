@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!-- React核心库 -->
+	<script type="text/javascript" src="./js/react.development.js"></script>
+	<!-- 与DOM相关的功能 -->
+	<script type="text/javascript" src="./js/react-dom.development.js"></script>
+	<script type="text/javascript" src="./js/babel.min.js"></script>
+	<script type="text/javascript" src="./js/prop-types.js"></script>
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<title>React入门 事件处理(传递参数)</title>
+	<style type="text/css"></style>
+	<style></style>
+</head>
+	<body>
+		<div id="app"></div>
+		<script type="text/babel">
+			// 方式一
+			// class Popper extends React.Component {
+			// 	constructor() {
+			// 		super();
+			// 		this.state = {
+			// 			name: 'Hello world!'
+			// 		};
+			// 	}
+			// 	preventPop(name, e) {
+			// 		e.preventDefault();
+			// 		alert(name)
+			// 	}
+			// 	render() {
+			// 		return (
+			// 			<div>
+			// 				<p>Hello</p>
+			// 				<a href="#" onClick={this.preventPop.bind(this, this.state.name)}>Click</a>
+			// 			</div>
+			// 		)
+			// 	}
+			// }
+
+			// 方式二
+			class Popper extends React.Component {
+				constructor() {
+					super();
+					this.state = {
+						name: 'Hello world!'
+					};
+				}
+				preventPop (e, name) {
+					e.stopPropagation();
+					alert(name)
+				}
+				handleClickParent = (e) => {
+					console.log('谁敢动爸爸!')
+				}
+				render() {
+					return (
+									<div onClick={this.handleClickParent}>
+										<p>Hello</p>
+										<a href="#" onClick={(e) => this.preventPop(e, this.state.name)}>Click</a>
+									</div>
+					)
+				}
+			}
+			ReactDOM.render(
+				<Popper />,
+				document.getElementById('app')
+			)
+		</script>
+	</body>
+</html>

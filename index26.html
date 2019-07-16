@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!-- React核心库 -->
+	<script type="text/javascript" src="./js/react.development.js"></script>
+	<!-- 与DOM相关的功能 -->
+	<script type="text/javascript" src="./js/react-dom.development.js"></script>
+	<script type="text/javascript" src="./js/babel.min.js"></script>
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<title>React入门 数据流（state）</title>
+	<style type="text/css"></style>
+</head>
+	<body>
+		<div id="app"></div>
+		<script type="text/babel">
+			function FormattedDate(props) {
+				return <h2>现在是{props.date.toLocaleTimeString()}</h2>
+			}
+			class Clock extends React.Component {
+				constructor(props) {
+					super(props);
+					this.state = {
+						date: new Date()
+					}
+				}
+				componentDidMount() {
+					this.timer = setInterval(function () {
+						this.setState({
+							date: new Date()
+						})
+					}.bind(this), 1000)
+				}
+				componentWillUnmount() {
+					clearInterval(this.timer)
+				}
+				render() {
+					return (
+						<div>
+							<h1>Hello, World!</h1>
+							<FormattedDate date={this.state.date} />
+						</div>
+					)
+				}
+ 			}
+			ReactDOM.render(
+				<Clock />,
+				document.getElementById('app')
+			)
+		</script>
+	</body>
+</html>

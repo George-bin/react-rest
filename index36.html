@@ -9,28 +9,45 @@
 	<script type="text/javascript" src="./js/babel.min.js"></script>
 	<script type="text/javascript" src="./js/prop-types.js"></script>
 	<script type="text/javascript" src="./js/jquery.min.js"></script>
-	<title>React入门 refs</title>
+	<title>React入门 条件渲染(三元运算符)</title>
 	<style type="text/css"></style>
 	<style></style>
 </head>
 	<body>
 		<div id="app"></div>
 		<script type="text/babel">
-			class MyComponent extends React.Component {
-				handleClick() {
-					this.refs.myInput.focus()
+			class Button extends React.Component {
+				constructor(props) {
+					super(props);
+					this.state = {
+						isLogin: false
+					}
+				}
+				handleLoginClick() {
+					this.setState({
+						isLogin: true
+					})
+				}
+				handleLogoutClick() {
+					this.setState({
+						isLogin: false
+					})
 				}
 				render() {
+					let isLogin = this.state.isLogin;
 					return (
-									<div>
-										<input type="text" ref="myInput" />
-										<input type="button" value="聚焦" onClick={this.handleClick.bind(this)} />
-									</div>
+						<div>
+							{isLogin ? (
+											<button onClick={this.handleLogoutClick.bind(this)}>注销</button>
+							) : (
+											<button onClick={this.handleLoginClick.bind(this)}>登录</button>
+							)}
+						</div>
 					)
 				}
 			}
 			ReactDOM.render(
-				<MyComponent />,
+				<Button />,
 				document.getElementById('app')
 			)
 		</script>

@@ -9,28 +9,42 @@
 	<script type="text/javascript" src="./js/babel.min.js"></script>
 	<script type="text/javascript" src="./js/prop-types.js"></script>
 	<script type="text/javascript" src="./js/jquery.min.js"></script>
-	<title>React入门 refs</title>
+	<title>React入门 表单与事件</title>
 	<style type="text/css"></style>
 	<style></style>
 </head>
 	<body>
 		<div id="app"></div>
 		<script type="text/babel">
-			class MyComponent extends React.Component {
-				handleClick() {
-					this.refs.myInput.focus()
+			class Content extends React.Component {
+				render() {
+					return <div>
+						<input type="text" value={this.props.myDataProp} onChange={this.props.updateStateProp} />
+						<h4>{this.props.myDataProp}</h4>
+					</div>;
+				}
+			}
+			class HelloMessage extends React.Component {
+				constructor(props) {
+					super(props);
+					this.state = {
+						value: 'Hello Runoob!'
+					}
+				}
+				handleChange(event) {
+					this.setState({
+						value: event.target.value
+					});
 				}
 				render() {
-					return (
-									<div>
-										<input type="text" ref="myInput" />
-										<input type="button" value="聚焦" onClick={this.handleClick.bind(this)} />
-									</div>
-					)
+					const value = this.state.value;
+					return <div>
+						<Content myDataProp={value} updateStateProp={this.handleChange.bind(this)} />
+					</div>
 				}
 			}
 			ReactDOM.render(
-				<MyComponent />,
+				<HelloMessage />,
 				document.getElementById('app')
 			)
 		</script>

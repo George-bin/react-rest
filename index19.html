@@ -8,29 +8,25 @@
 	<script type="text/javascript" src="./js/react-dom.development.js"></script>
 	<script type="text/javascript" src="./js/babel.min.js"></script>
 	<script type="text/javascript" src="./js/prop-types.js"></script>
-	<script type="text/javascript" src="./js/jquery.min.js"></script>
-	<title>React入门 refs</title>
+	<title>React入门 PropTypes</title>
 	<style type="text/css"></style>
-	<style></style>
 </head>
 	<body>
 		<div id="app"></div>
 		<script type="text/babel">
-			class MyComponent extends React.Component {
-				handleClick() {
-					this.refs.myInput.focus()
-				}
+			var MyTitle = React.createClass ({
+				getDefaultProps() {
+					return {
+						title: 'hello world!'
+					};
+				},
 				render() {
-					return (
-									<div>
-										<input type="text" ref="myInput" />
-										<input type="button" value="聚焦" onClick={this.handleClick.bind(this)} />
-									</div>
-					)
+					return <h1>{this.props.title}</h1>
 				}
-			}
+			})
+
 			ReactDOM.render(
-				<MyComponent />,
+				<MyTitle name="123" />,
 				document.getElementById('app')
 			)
 		</script>

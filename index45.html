@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!-- React核心库 -->
+	<script type="text/javascript" src="./js/react.development.js"></script>
+	<!-- 与DOM相关的功能 -->
+	<script type="text/javascript" src="./js/react-dom.development.js"></script>
+	<script type="text/javascript" src="./js/babel.min.js"></script>
+	<script type="text/javascript" src="./js/prop-types.js"></script>
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<title>React入门 通过子组件更新父组件</title>
+	<style type="text/css"></style>
+	<style></style>
+</head>
+	<body>
+		<div id="app"></div>
+		<script type="text/babel">
+			class SonComponent extends React.Component {
+				constructor(props) {
+					super(props);
+				}
+				render() {
+					return (
+									<button onClick={this.props.onUpdateState}>
+										{this.props.name ? '变身错误' : '变身正确'}
+									</button>
+					)
+				}
+			}
+			class ParentComponent extends React.Component {
+				constructor(props) {
+					super(props);
+					this.state = {
+						activeStaus: false
+					}
+				}
+				onUpdateState(event) {
+					this.setState({
+						activeStaus: !this.state.activeStaus
+					})
+				}
+				render() {
+					return (
+									<div>
+										<SonComponent name={this.state.activeStaus} onUpdateState={this.onUpdateState.bind(this)} />
+										<p>我是 {this.state.activeStaus ? '正确' : '错误'}!</p>
+									</div>
+					)
+				}
+
+			}
+			ReactDOM.render(
+				<ParentComponent />,
+				document.getElementById('app')
+			)
+		</script>
+	</body>
+</html>

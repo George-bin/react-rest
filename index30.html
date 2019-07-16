@@ -9,28 +9,36 @@
 	<script type="text/javascript" src="./js/babel.min.js"></script>
 	<script type="text/javascript" src="./js/prop-types.js"></script>
 	<script type="text/javascript" src="./js/jquery.min.js"></script>
-	<title>React入门 refs</title>
+	<title>React入门 事件处理</title>
 	<style type="text/css"></style>
-	<style></style>
 </head>
 	<body>
 		<div id="app"></div>
 		<script type="text/babel">
-			class MyComponent extends React.Component {
-				handleClick() {
-					this.refs.myInput.focus()
+			class Toggle extends React.Component {
+				constructor(props) {
+					super(props);
+					this.state = {
+						isToggleOn: true
+					};
+					// 这边绑定是必要的，这样 `this` 才能在回调函数中使用
+					this.handleClick = this.handleClick.bind(this)
+				}
+				handleClick(event) {
+					this.setState(prevState => ({
+						isToggleOn: !prevState.isToggleOn
+					}))
 				}
 				render() {
 					return (
-									<div>
-										<input type="text" ref="myInput" />
-										<input type="button" value="聚焦" onClick={this.handleClick.bind(this)} />
-									</div>
+									<button onClick={this.handleClick}>
+										{this.state.isToggleOn ? 'on' : 'off'}
+									</button>
 					)
 				}
 			}
 			ReactDOM.render(
-				<MyComponent />,
+				<Toggle />,
 				document.getElementById('app')
 			)
 		</script>

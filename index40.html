@@ -9,28 +9,46 @@
 	<script type="text/javascript" src="./js/babel.min.js"></script>
 	<script type="text/javascript" src="./js/prop-types.js"></script>
 	<script type="text/javascript" src="./js/jquery.min.js"></script>
-	<title>React入门 refs</title>
+	<title>React入门 元素的 key 在他的兄弟元素之间应该唯一</title>
 	<style type="text/css"></style>
 	<style></style>
 </head>
 	<body>
 		<div id="app"></div>
 		<script type="text/babel">
-			class MyComponent extends React.Component {
-				handleClick() {
-					this.refs.myInput.focus()
-				}
+			class Blog extends React.Component {
 				render() {
+					const sidebar = (
+									<ul>
+										{this.props.posts.map(post => {
+											return <li key={post.id}>
+												{post.title}
+											</li>
+										})}
+									</ul>
+					);
+					const content = this.props.posts.map(post => {
+						return <div key={post.id}>
+							<h3>{post.title}</h3>
+							<p>{post.content}</p>
+						</div>
+					});
 					return (
 									<div>
-										<input type="text" ref="myInput" />
-										<input type="button" value="聚焦" onClick={this.handleClick.bind(this)} />
+										{sidebar}
+										<hr />
+										{content}
 									</div>
 					)
 				}
 			}
+
+			const posts = [
+				{id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
+				{id: 2, title: 'Installation', content: 'You can install React from npm.'}
+			];
 			ReactDOM.render(
-				<MyComponent />,
+				<Blog posts={posts} />,
 				document.getElementById('app')
 			)
 		</script>

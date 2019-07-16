@@ -9,28 +9,25 @@
 	<script type="text/javascript" src="./js/babel.min.js"></script>
 	<script type="text/javascript" src="./js/prop-types.js"></script>
 	<script type="text/javascript" src="./js/jquery.min.js"></script>
-	<title>React入门 refs</title>
+	<title>React入门 列表</title>
 	<style type="text/css"></style>
 	<style></style>
 </head>
 	<body>
 		<div id="app"></div>
 		<script type="text/babel">
-			class MyComponent extends React.Component {
-				handleClick() {
-					this.refs.myInput.focus()
-				}
-				render() {
-					return (
-									<div>
-										<input type="text" ref="myInput" />
-										<input type="button" value="聚焦" onClick={this.handleClick.bind(this)} />
-									</div>
-					)
-				}
-			}
+			const numbers = [1,2,3,4,5];
+			const listItems = numbers.map((number) => {
+				return <li key={number.toString()}>{number}</li>
+			});
+
 			ReactDOM.render(
-				<MyComponent />,
+				<div>
+					<h2>列表</h2>
+					<ul>
+						{listItems}
+					</ul>
+				</div>,
 				document.getElementById('app')
 			)
 		</script>

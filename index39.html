@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!-- React核心库 -->
+	<script type="text/javascript" src="./js/react.development.js"></script>
+	<!-- 与DOM相关的功能 -->
+	<script type="text/javascript" src="./js/react-dom.development.js"></script>
+	<script type="text/javascript" src="./js/babel.min.js"></script>
+	<script type="text/javascript" src="./js/prop-types.js"></script>
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<title>React入门 列表(key)</title>
+	<style type="text/css"></style>
+	<style></style>
+</head>
+	<body>
+		<div id="app"></div>
+		<script type="text/babel">
+			// key的错误使用方式
+			// function ListItem(props) {
+			// 	const value = props.value;
+			// 	return (
+			// 					<li key={value.toString()}>{value}</li>
+			// 	)
+			// }
+			// function NumberList(props) {
+			// 	const number = props.numbers;
+			// 	const listItems = numbers.map(number => {
+			// 		return <ListItem value={number} />
+			// 	})
+			// 	return (
+			// 					<ul>
+			// 						{listItems}
+			// 					</ul>
+			// 	)
+			// }
+
+			// key的正确使用方式
+			function ListItem(props) {
+				return <li>{props.value}</li>
+			}
+			function NumberList(props) {
+				const numbers = props.numbers;
+				const listItems = numbers.map(number => {
+					return <ListItem key={number.toString()} value={number} />
+				});
+				return (
+								<ul>
+									{listItems}
+								</ul>
+				);
+			}
+
+
+			const numbers = [1, 2, 3, 4, 5];
+			ReactDOM.render(
+				<NumberList numbers={numbers} />,
+				document.getElementById('app')
+			)
+		</script>
+	</body>
+</html>
